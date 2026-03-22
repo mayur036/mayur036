@@ -107,16 +107,27 @@ Pronouns : He / His
 
 This repository includes a small CLI tool to audit public GitHub repositories for accidentally exposed Anthropic API keys.
 
-### Usage
-1. Install Python 3.10+ (no external dependencies required).
-2. (Optional) Export a `GITHUB_TOKEN` with `repo` scope to increase rate limits:
+### How to run the scanner
+1. Clone this repository and move into it:
+   ```bash
+   git clone https://github.com/mayur036/mayur036.git
+   cd mayur036
+   ```
+2. Install Python 3.10+ (no external dependencies are required).
+3. (Optional but recommended) Export a `GITHUB_TOKEN` with `repo` scope to increase rate limits:
    ```bash
    export GITHUB_TOKEN=ghp_your_token_here
    ```
-3. Run the scanner:
+4. Run the scanner from the project root:
    ```bash
    python anthropic_scanner.py <github-username-or-org> --output scan_results.json
    ```
+5. Review the terminal output and the generated `scan_results.json` file for any findings.
+
+To verify everything works locally, you can also run the tests:
+```bash
+python -m unittest
+```
 
 ### What it does
 - Uses the GitHub REST API to list public repositories and fetch file contents.
