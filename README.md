@@ -103,6 +103,32 @@ Pronouns : He / His
 
 ---
 
+## 🔒 Anthropic Key Scanner (Security Audit Tool)
+
+This repository includes a small CLI tool to audit public GitHub repositories for accidentally exposed Anthropic API keys.
+
+### Usage
+1. Install Python 3.10+ (no external dependencies required).
+2. (Optional) Export a `GITHUB_TOKEN` with `repo` scope to increase rate limits:
+   ```bash
+   export GITHUB_TOKEN=ghp_your_token_here
+   ```
+3. Run the scanner:
+   ```bash
+   python anthropic_scanner.py <github-username-or-org> --output scan_results.json
+   ```
+
+### What it does
+- Uses the GitHub REST API to list public repositories and fetch file contents.
+- Skips large/binary files and respects rate limits.
+- Detects Anthropic API keys with `sk-ant-` regex (`sk-ant-[a-zA-Z0-9-_]{20,}`) and related keywords (`anthropic`, `claude`, `api_key`).
+- Outputs findings with repository, file path, line number, and **masked** keys.
+- Writes results to JSON and reminds you to rotate any exposed keys.
+
+> **Important:** Use this tool only for ethical security auditing, protecting your own assets, or responsible disclosure. Never misuse detected credentials.
+
+---
+
 ## 🌐 Connect With Me
 
 <div align="center">
